@@ -4,27 +4,20 @@ from utils import get_puzzle_input
 
 
 def main(day):
-    input_data_part1 = get_puzzle_input(day, part=1)
-    input_data_part2 = "# Part 2 input will be available after solving Part 1"
+    input_data = get_puzzle_input(day)
 
     day_folder = f"day{day:02d}"
-    inputs_folder = os.path.join(day_folder, "inputs")
+    input_folder = os.path.join(day_folder, "input")
     solutions_folder = os.path.join(day_folder, "solutions")
-    os.makedirs(inputs_folder, exist_ok=True)
+    os.makedirs(input_folder, exist_ok=True)
     os.makedirs(solutions_folder, exist_ok=True)
 
-    input_part1_file_path = os.path.join(
-        inputs_folder,
-        "input_part1.txt",
+    input_file_path = os.path.join(
+        input_folder,
+        "input.txt",
     )
-    input_part2_file_path = os.path.join(
-        inputs_folder,
-        "input_part2.txt",
-    )
-    with open(input_part1_file_path, "w") as input_part1_file:
-        input_part1_file.write(input_data_part1)
-    with open(input_part2_file_path, "w") as input_part2_file:
-        input_part2_file.write(input_data_part2)
+    with open(input_file_path, "w") as input_file:
+        input_file.write(input_data)
 
     part1_file_path = os.path.join(
         solutions_folder,
@@ -56,7 +49,7 @@ def main(day):
         with open(test_part2_file_path, "w") as test_part2_file:
             test_part2_file.write("# Tests for Part 2\n")
 
-    print(f"Day {day} input saved to {input_part1_file_path}")
+    print(f"Day {day} input saved to {input_file_path}")
     print(f"Solution and test files created at {solutions_folder}")
 
 

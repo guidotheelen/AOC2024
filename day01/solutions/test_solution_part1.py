@@ -1,4 +1,8 @@
 import unittest
+from day02.solutions.solution_part1 import (
+    vary_check,
+    report_is_only_decreasing,
+)
 from solution_part1 import distList, parse_input
 import tempfile
 import os
@@ -82,6 +86,72 @@ class TestDistList(unittest.TestCase):
         list2 = [3, 4, 5]
         with self.assertRaises(IndexError):
             distList(list1, list2)
+
+
+class TestReportIsOnlyDecreasing(unittest.TestCase):
+
+    def test_report_is_only_decreasing_with_decreasing_values(self):
+        report = [4, 3, 2, 1]
+        self.assertTrue(report_is_only_decreasing(report))
+
+    def test_report_is_only_decreasing_with_increasing_values(self):
+        report = [1, 2, 3, 4]
+        self.assertFalse(report_is_only_decreasing(report))
+
+    def test_report_is_only_decreasing_with_equal_values(self):
+        report = [1, 1, 1, 1]
+        self.assertFalse(report_is_only_decreasing(report))
+
+    def test_report_is_only_decreasing_with_mixed_values(self):
+        report = [4, 3, 4, 3]
+        self.assertFalse(report_is_only_decreasing(report))
+
+    def test_report_is_only_decreasing_with_single_value(self):
+        report = [1]
+        self.assertTrue(report_is_only_decreasing(report))
+
+    def test_report_is_only_decreasing_with_two_values_decreasing(self):
+        report = [2, 1]
+        self.assertTrue(report_is_only_decreasing(report))
+
+    def test_report_is_only_decreasing_with_two_values_increasing(self):
+        report = [1, 2]
+        self.assertFalse(report_is_only_decreasing(report))
+
+
+class TestVaryCheck(unittest.TestCase):
+
+    def test_vary_check_with_valid_data(self):
+        report = [1, 2, 3, 4]
+        self.assertTrue(vary_check(report))
+
+    def test_vary_check_with_invalid_data(self):
+        report = [1, 5, 3, 4]
+        self.assertFalse(vary_check(report))
+
+    def test_vary_check_with_exact_difference(self):
+        report = [1, 4, 7, 10]
+        self.assertTrue(vary_check(report))
+
+    def test_vary_check_with_negative_values(self):
+        report = [-1, -2, -3, -4]
+        self.assertTrue(vary_check(report))
+
+    def test_vary_check_with_mixed_values(self):
+        report = [1, -1, 2, -2]
+        self.assertFalse(vary_check(report))
+
+    def test_vary_check_with_single_value(self):
+        report = [1]
+        self.assertTrue(vary_check(report))
+
+    def test_vary_check_with_two_values_within_limit(self):
+        report = [1, 3]
+        self.assertTrue(vary_check(report))
+
+    def test_vary_check_with_two_values_exceeding_limit(self):
+        report = [1, 5]
+        self.assertFalse(vary_check(report))
 
 
 if __name__ == "__main__":
