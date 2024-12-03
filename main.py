@@ -29,11 +29,11 @@ def main(day):
     )
     test_part1_file_path = os.path.join(
         solutions_folder,
-        "test_solution_part1.py",
+        "test_solution_part1_day{day:02d}.py",
     )
     test_part2_file_path = os.path.join(
         solutions_folder,
-        "test_solution_part2.py",
+        "test_solution_part2_day{day:02d}.py",
     )
 
     if not os.path.exists(part1_file_path):
